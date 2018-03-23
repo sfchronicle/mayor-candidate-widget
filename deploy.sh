@@ -58,7 +58,7 @@ if [ -d "/Volumes/SFGextras/Projects/" ]; then
 		if [[ $REPLY =~ ^[Yy]$ ]]; then
 		  echo "User confirmed deployment. Starting..."
 		  echo "Removing any existing query strings..."
-		  replaceJS="s/\.js?.*?(?=(\"|\'))/\.js/g"
+		  replaceJS="s/\.js\?.*?(?=(\"|\'))"
 		  replaceCSS="s/\.css?.*?(?=(\"|\'))/\.css/g"
 		  perl -pi -e $replaceJS build/*.html
 		  perl -pi -e $replaceCSS build/*.html
@@ -69,12 +69,12 @@ if [ -d "/Volumes/SFGextras/Projects/" ]; then
 		  perl -pi -e $replaceJS build/*.html
 		  perl -pi -e $replaceCSS build/*.html
 		  echo "Uploading files to server..."
-		  cp -a build/. "/Volumes/SFGextras/Projects/$1/$path" &
-		  spinner
-		  echo "Change index.html to index.php on server"
-		  startpath="/Volumes/SFGextras/Projects/$1/$path/index.html"
-		  endpath="/Volumes/SFGextras/Projects/$1/$path/index.php"
-		  mv $startpath $endpath
+		  # cp -a build/. "/Volumes/SFGextras/Projects/$1/$path" &
+		  # spinner
+		  # echo "Change index.html to index.php on server"
+		  # startpath="/Volumes/SFGextras/Projects/$1/$path/index.html"
+		  # endpath="/Volumes/SFGextras/Projects/$1/$path/index.php"
+		  # mv $startpath $endpath
 		  echo -e "${GREEN}DEPLOY COMPLETE.${NC} Exiting..."
 		else 
 			echo "INFO: User cancelled deployment. Exiting..."
